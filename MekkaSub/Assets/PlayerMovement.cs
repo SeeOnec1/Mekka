@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 //using System.Diagnostics;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -26,10 +24,11 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 groundCheckSize;
     public LayerMask whatIsGround;
     public float LastOnGroundTime { get; private set; }
+    public float jumpForce;
 
     public float frictionAmount;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,8 +36,6 @@ public class PlayerMovement : MonoBehaviour
         expBuffer = false;
         rb = GetComponent<Rigidbody2D>();
 
-
-        
     }
 
     private void Update()
@@ -49,16 +46,21 @@ public class PlayerMovement : MonoBehaviour
         LastOnGroundTime -= Time.deltaTime;
 
 
-        if(moveInput < 0.1f && moveInput > -0.1f)
+        if (moveInput < 0.1f && moveInput > -0.1f)
         {
-            
+
             isMoving = false;
         }
         else isMoving = true;
 
         //Debug.Log(isMoving);
-    }
 
+        if (LastOnGroundTime > 0 && Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+
+    }
 
     void FixedUpdate()
     {
@@ -88,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Yes");
         }
         else return;
-        
+
         #endregion
 
         #region Flip
@@ -101,6 +103,8 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
         #endregion
+
+
     }
 
     void Flip()
@@ -125,6 +129,13 @@ public class PlayerMovement : MonoBehaviour
         yield return null;
     }
 
-    
+    void Jump()
+    {
+        rb.AddForce(new Vector2(0, jumpForce));
+    }
 
+    private void OnDrawGizmos()
+    {
+        //Gizmos.DrawCube(groundCheck.position, groundCheckSize);
+    }
 }
