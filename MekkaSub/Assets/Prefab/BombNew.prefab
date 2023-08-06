@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64fff28860cd7a4488801e0444347323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expForceX: 800
+  expForceX: 600
   expForceY: 800
   rb: {fileID: 6297800}
   throwForce: 3
