@@ -1534,6 +1534,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7769512098319787280, guid: 835561d199107ce46b69ce06c44fde5a, type: 3}
+      propertyPath: fallStopping.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769512098319787280, guid: 835561d199107ce46b69ce06c44fde5a, type: 3}
       propertyPath: frictionAmount
       value: 0.5
       objectReference: {fileID: 0}

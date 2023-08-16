@@ -31,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
     float orignalGravityScale;
     public float gravityScaleMultipliyer;
     public float maxFallSpeed;
-    
+
+    public Vector2 fallStopping;
     void Start()
     {
         expBuffer = false;
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             LastOnGroundTime = 0.1f;
 
         LastOnGroundTime -= Time.deltaTime;
-   
+
 
         if (LastOnGroundTime > 0 && Input.GetKeyDown(KeyCode.Space))
         {
@@ -69,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region Fall
-        //Debug.Log(rb.velocity.y);
+        
 
         if (rb.velocity.y < 0)
         {
@@ -78,8 +79,14 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -maxFallSpeed));
         }
 
+        if (LastOnGroundTime < 0 && rb.velocity.y > 0 && rb.velocity.y < 5f)
+        {
+            rb.AddForce(fallStopping, ForceMode2D.Force);
+            Debug.Log(rb.velocity.y);
+        }
+
         #endregion
-    
+
         #region Resets
 
         if (LastOnGroundTime > 0)
@@ -94,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+
         #region Run
         if (canWalk)
         {
@@ -110,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
 
         //if (!expBuffer) rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
         #endregion
-        
+
         #region Friction
 
         if (LastOnGroundTime > 0 && !isMoving)
