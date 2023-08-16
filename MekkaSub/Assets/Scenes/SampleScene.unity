@@ -467,8 +467,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279157192}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -12.75, y: 6.2784, z: 0}
-  m_LocalScale: {x: 4.354438, y: 1, z: 1}
+  m_LocalPosition: {x: -12.75, y: 43.242, z: 0}
+  m_LocalScale: {x: 18.709713, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -604,8 +604,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422704452}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 11.79, y: 5.8624, z: 0}
-  m_LocalScale: {x: 4.2173643, y: 1, z: 1}
+  m_LocalPosition: {x: 11.79, y: 41.4546, z: 0}
+  m_LocalScale: {x: 18.120749, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1526,12 +1526,20 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7769512098319787280, guid: 835561d199107ce46b69ce06c44fde5a, type: 3}
+      propertyPath: maxFallSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769512098319787280, guid: 835561d199107ce46b69ce06c44fde5a, type: 3}
       propertyPath: deccelaration
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7769512098319787280, guid: 835561d199107ce46b69ce06c44fde5a, type: 3}
       propertyPath: frictionAmount
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769512098319787280, guid: 835561d199107ce46b69ce06c44fde5a, type: 3}
+      propertyPath: gravityScaleMultipliyer
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7769512098319787500, guid: 835561d199107ce46b69ce06c44fde5a, type: 3}
       propertyPath: m_Sprite
@@ -1570,12 +1578,16 @@ PrefabInstance:
       value: -0.63700855
       objectReference: {fileID: 0}
     - target: {fileID: 7769512098319787503, guid: 835561d199107ce46b69ce06c44fde5a, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769512098319787503, guid: 835561d199107ce46b69ce06c44fde5a, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7769512098319787503, guid: 835561d199107ce46b69ce06c44fde5a, type: 3}
       propertyPath: m_LinearDrag
-      value: 0.1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7769512098447739980, guid: 835561d199107ce46b69ce06c44fde5a, type: 3}
       propertyPath: m_Name

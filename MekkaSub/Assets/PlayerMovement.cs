@@ -28,42 +28,73 @@ public class PlayerMovement : MonoBehaviour
 
     public float frictionAmount;
 
-
-
-    // Start is called before the first frame update
+    float orignalGravityScale;
+    public float gravityScaleMultipliyer;
+    public float maxFallSpeed;
+    
     void Start()
     {
         expBuffer = false;
         rb = GetComponent<Rigidbody2D>();
-
+        orignalGravityScale = rb.gravityScale;
     }
 
     private void Update()
     {
+
+        #region JumpCheck
+
         if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround)) //checks if set box overlaps with ground
             LastOnGroundTime = 0.1f;
 
         LastOnGroundTime -= Time.deltaTime;
-
-
-        if (moveInput < 0.1f && moveInput > -0.1f)
-        {
-
-            isMoving = false;
-        }
-        else isMoving = true;
-
-        //Debug.Log(isMoving);
+   
 
         if (LastOnGroundTime > 0 && Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
 
+        #endregion
+
+        #region Movement
+
+        if (moveInput < 0.1f && moveInput > -0.1f)
+        {
+            isMoving = false;
+        }
+        else isMoving = true;
+
+        //Debug.Log(isMoving);
+        #endregion
+
+        #region Fall
+        //Debug.Log(rb.velocity.y);
+
+        if (rb.velocity.y < 0)
+        {
+            rb.gravityScale = orignalGravityScale * gravityScaleMultipliyer;
+
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -maxFallSpeed));
+        }
+
+        #endregion
+    
+        #region Resets
+
+        if (LastOnGroundTime > 0)
+        {
+            rb.gravityScale = orignalGravityScale;
+
+        }
+
+        #endregion
+
     }
 
     void FixedUpdate()
     {
+        
         #region Run
         if (canWalk)
         {
@@ -79,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
         //if (!expBuffer) rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
         #endregion
-
+        
         #region Friction
 
         if (LastOnGroundTime > 0 && !isMoving)
@@ -103,7 +134,6 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
         #endregion
-
 
     }
 
